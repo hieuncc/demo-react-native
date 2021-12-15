@@ -1,81 +1,45 @@
 import React from "react"
-import { Text, Image, View } from "react-native"
+import { Image, View } from "react-native"
+import HeaderItem from "./header_item"
+import SubtitleItem from "./subtitle_item"
+import WrapCardItem from "./wrap_card_item"
+import ButtonAddItem from "./button_add_item"
 const ListSellItem = () => {
   return (
-    <View
-      style={{
-        width: 175,
-        height: 250,
-        borderRadius: 18,
-        borderWidth: 1,
-        padding: 15,
-        borderColor: "#E2E2E2",
-        display: "flex",
-        alignItems: "center"
-      }}
-    >
-      <Image 
-        style={{
-          height: 80,
-          width: 100,
-          margin: 10
-        }}
-        source={require('../../../assets/product/food.png')}
-      />
-      <View
-        style={{
-          width: "100%",
-          margin: 5,
-          display: "flex",
-          flexDirection: "column"
-        }}
-      >
-        <Text
+    <View>
+      <WrapCardItem>
+        <Image 
+          style={{
+            height: 80,
+            width: 100,
+            margin: 10
+          }}
+          source={require('../../../assets/product/food.png')}
+        />
+        <View
           style={{
             width: "100%",
-            color: "#181725",
-            fontSize: 16,
-            lineHeight: 18,
-            letterSpacing: 0.1,
-            fontWeight: "bold",
+            margin: 5,
+            display: "flex",
+            flexDirection: "column"
           }}
         >
-          Organic Bananas
-        </Text>
-        <Text
+          <HeaderItem header="Organic Bananas" />
+          <SubtitleItem subtilte="7pcs, Priceg" />
+        </View>
+        <View
           style={{
+            display: "flex",
             width: "100%",
-            color: "#7C7C7C",
-            fontSize: 14,
-            lineHeight: 18,
-            letterSpacing: 0.1,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center"
           }}
         >
-          7pcs, Priceg
-        </Text>
-      </View>
-      {/* PART-3 */}
-      <View
-        style={{
-          width: "100%",
-          margin: 5,
-          display: "flex",
-          flexDirection: "column"
-        }}
-      >
-        <Text
-          style={{
-            width: "100%",
-            color: "#181725",
-            fontSize: 16,
-            lineHeight: 18,
-            letterSpacing: 0.1,
-            fontWeight: "bold",
-          }}
-        >
-          $4.99
-        </Text>
-      </View>
+          <HeaderItem header="$4.99" />
+          <ButtonAddItem />
+        </View>
+      </WrapCardItem>
     </View>
   )
 }
