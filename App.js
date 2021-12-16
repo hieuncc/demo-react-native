@@ -36,8 +36,7 @@ const App = () => {
       >
         <View
           style={{
-            paddingLeft: 25,
-            paddingRight: 25
+            padding: 25
           }}
         >
           <ScreenHome />

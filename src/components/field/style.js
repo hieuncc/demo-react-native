@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     // THEME
-    backgroundColor: "rgba(242, 243, 242, 1)",
+    backgroundColor: '#E5E5E5',
     // BORDER
     borderRadius: 15,
     borderWidth: 1,
