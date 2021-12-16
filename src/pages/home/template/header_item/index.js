@@ -1,8 +1,8 @@
 import React from "react"
 import { Text } from "react-native"
-import { style } from "./style"
-const HeaderItem = ({header}) => {
-  return <Text style={style}> 
+import { useStyle } from "./style"
+const HeaderItem = ({header, size}) => {
+  return <Text style={useStyle(size)}> 
     {header}
   </Text>
 }
