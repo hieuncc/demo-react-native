@@ -1,3 +1,5 @@
+import React from "react"
+import { View, Image, TextInput } from "react-native"
 import { styles } from "./style"
 const SearchField = () => {
   return (
@@ -5,7 +7,7 @@ const SearchField = () => {
       style={styles.container_view_field}  
     >
       <Image 
-        source={require("./src/assets/search.png")}
+        source={require("../../assets/search.png")}
       />
       <TextInput 
         placeholder="Search Store"

@@ -19,6 +19,7 @@ import LoadingScreen from './src/pages/loading_screen';
 import search_icon from "./src/assets/search.png"
 import ScreenHome from './src/pages/home';
 import ListSellItem from './src/pages/home/template';
+import Navbar from './src/pages/navbar';
 
 const App = () => {
   return (
@@ -33,8 +34,15 @@ const App = () => {
           justifyContent: "center",
         }}
       >
-        <ListSellItem />
-        <ScreenHome />
+        <View
+          style={{
+            paddingLeft: 25,
+            paddingRight: 25
+          }}
+        >
+          <ScreenHome />
+        </View>
+        <Navbar />
       </View> 
     </SafeAreaView>
   );

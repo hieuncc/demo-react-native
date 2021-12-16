@@ -4,6 +4,7 @@ export const style = {
   borderRadius: 18,
   borderWidth: 1,
   padding: 15,
+  marginRight:  15,
   borderColor: "#E2E2E2",
   display: "flex",
   justifyContent: "space-between",
