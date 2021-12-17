@@ -39,3 +39,29 @@ export const renderItem = ({item}) => (
       </View>
     </WrapCardItem>
 );
+
+export const renderItemNonPrice = ({item}) => (
+  <View
+    style={{
+      width: 250,
+      height: 105,
+      borderRadius: 18,
+      borderWidth: 1,
+      marginRight:  15,
+      borderColor: "#E2E2E2",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: item.backgroundColor,
+      padding: 15
+    }}
+  >
+    <Image
+      style={{
+        marginRight: 10,
+      }}
+      source={item.image}
+    />
+    <HeaderItem header={item.header} />
+  </View>
+)

@@ -12,7 +12,9 @@ const WrapList = ({children, header}) => {
         marginBottom={20}
       >
         <HeaderItem header={header} size={24} />
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => console.log(1)}
+        >
           <HeaderItem header="See all" size={16} color="#53B175" />
         </TouchableOpacity>
       </View>

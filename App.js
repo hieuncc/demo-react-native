@@ -20,6 +20,7 @@ import search_icon from "./src/assets/search.png"
 import ScreenHome from './src/pages/home';
 import ListSellItem from './src/pages/home/template';
 import Navbar from './src/pages/navbar';
+import DetailsProduct from './src/components/details_product';
 
 const App = () => {
   return (
@@ -34,14 +35,15 @@ const App = () => {
           justifyContent: "center",
         }}
       >
-        <View
+        {/* <View
           style={{
             padding: 25
           }}
         >
           <ScreenHome />
         </View>
-        <Navbar />
+        <Navbar /> */}
+        <DetailsProduct />
       </View> 
     </SafeAreaView>
   );

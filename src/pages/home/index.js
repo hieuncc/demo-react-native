@@ -4,7 +4,7 @@ import { DATA } from './constant';
 import WrapListItem from './template';
 import SearchField from '../../components/field';
 import HeaderHome from './template/header';
-import { renderItem } from './function/renderItem';
+import { renderItem, renderItemNonPrice } from './function/renderItem';
 import FlatListItem from './template/flat_list_item'
 const ScreenHome = () => {
   return (
@@ -28,14 +28,20 @@ const ScreenHome = () => {
           data={DATA[1].list}
         />
       </WrapListItem>
-      <WrapListItem header="Groceries">
+      <WrapListItem header={DATA[2].role}>
+        <View
+          style={{
+            marginBottom: 20
+          }}
+        >
+          <FlatListItem 
+            renderItem={renderItemNonPrice}
+            data={DATA[2].list_non_price}
+          />
+        </View>
         <FlatListItem 
           renderItem={renderItem}
-          data={DATA[1].list}
-        />
-        <FlatListItem 
-          renderItem={renderItem}
-          data={DATA[1].list}
+          data={DATA[2].list}
         />
       </WrapListItem>
     </ScrollView>
