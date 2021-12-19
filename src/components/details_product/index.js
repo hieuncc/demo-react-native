@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import HeaderItem from '../../pages/home/template/header_item';
 import SubtitleItem from '../../pages/home/template/subtitle_item';
+import Accordion from '../accordion';
 
 const DetailsProduct = () => {
   return (
@@ -106,6 +107,34 @@ const DetailsProduct = () => {
           </View>
           <HeaderItem header="$4.99" size={24} />
         </View>
+        <Accordion>
+          <Text
+            style={{
+              color: "#7C7C7C",
+              fontSize: 13,
+              lineHeight: 21
+            }}
+          >
+            Apples are nutritious. 
+            Apples may be good for weight loss.
+            apples may be good for your heart. 
+            As part of a healtful and varied diet.
+          </Text>
+        </Accordion>
+        <Accordion>
+          <Text
+            style={{
+              color: "#7C7C7C",
+              fontSize: 13,
+              lineHeight: 21
+            }}
+          >
+            Apples are nutritious. 
+            Apples may be good for weight loss.
+            apples may be good for your heart. 
+            As part of a healtful and varied diet.
+          </Text>
+        </Accordion>
       </View>
     </View>
   );
