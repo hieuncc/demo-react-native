@@ -1,18 +1,22 @@
-export const style = {
+import { StyleSheet } from "react-native"
+export const style = StyleSheet.create({
     scroll_view: {
         width: '100%',
         height: '100%',
     },
-    wrap_header_info: {
+    fixed_button_bottom: {
+        width: "100%",
+        padding: 25,
+    },
+    wrap_header: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    wrap_header: {
+    wrap_content: {
         paddingLeft: 25,
         paddingRight: 25,
-        paddingBottom: 30,
         paddingTop: 30
     },
     wrap_quantity: {
@@ -35,4 +39,4 @@ export const style = {
         lineHeight: 21,
         paddingBottom: 15,
     },
-}
+})

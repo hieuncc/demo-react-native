@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import HeaderItem from "../../pages/home/template/header_item";
 import { style } from "./style";
 const ButtonSubmit = ({header, action}) => {
