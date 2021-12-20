@@ -1,142 +1,126 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {ScrollView, View, Text, Image, TouchableOpacity} from 'react-native';
 import HeaderItem from '../../pages/home/template/header_item';
 import SubtitleItem from '../../pages/home/template/subtitle_item';
 import Accordion from '../accordion';
+import ButtonSubmit from '../button';
+import ButtonAction from './button_action';
+import ViewImage from './image';
+import Quantity from './quantity';
+import {style} from './style';
+// import { SvgUri } from 'react-native-svg';
 
 const DetailsProduct = () => {
-  return (
-    <View 
-      style={{
-        width: "100%",
-        height: "100%"
-      }}
-    >
+  const Nutritions = ({gram}) => {
+    return (
       <View
-        style= {{
-          backgroundColor: "rgba(242, 243, 242, 1)",
-          borderBottomRightRadius: 25,
-          borderBottomLeftRadius: 25,
-          width: "100%",
-          paddingLeft: 40,
-          paddingRight: 40,
-          paddingTop: 70,
-          paddingBottom: 70,
-          // paddingLeft: 40,
-          aspectRatio: 4/3
-        }}
-      >
-        <Image
-          style={{
-            resizeMode: "contain",
-            width: "100%",
-            height: "100%"
-          }}
-          source={require("../../assets/product/apple_details.png")}
-        />
-      </View>
-      <View 
         style={{
-          paddingLeft: 25,
-          paddingRight: 25,
-          paddingBottom: 30,
-          paddingTop: 30
+          backgroundColor: "#EBEBEB",
+          padding: 10,
+          paddingBottom: 5,
+          paddingTop: 5,
+          borderRadius: 5,
+          maxHeight: 24
         }}
       >
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center"
-          }}
-        >
+        <HeaderItem color="rgba(124, 124, 124, 1)" size={9} header={`${gram}gr`} />
+      </View>
+    )
+  }
+  const RatingStar = () => {
+    return (
+      <View
+        style={{
+          backgroundColor: "red"
+        }}
+      >
+        {/* <SvgUri 
+          width="100%"
+          height="100%"
+          // uri="../../assets/star.svg"
+          source={require('../../assets/star.svg')}
+        /> */}
+      </View>
+    )
+  }
+  const PRODUCT = 
+    {
+      name: "Apple",
+      nutritions: {
+        calories: 52,
+        water: "86%",
+        protetin: "0.3 grams",
+        carbs: "13.8 grams",
+        fiber: "2.4 grams",
+        fat: "0.2 grams"
+      }
+    }
+  return (
+    <ScrollView style={style.scroll_view}>
+      <ViewImage />
+      <View style={style.wrap_header}>
+        <View style={style.wrap_header_info}>
           <View>
             <HeaderItem header="Naturel Red Apple" size={24} />
             <SubtitleItem subtilte="1kg, Price" />
           </View>
           <TouchableOpacity>
-            <Image 
-              source={require("../../assets/like.png")}
-            />
+            <Image source={require('../../assets/like.png')} />
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: 30,
-            marginBottom: 30
-          }}
-        >
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <TouchableOpacity>
-              <Image 
-                source={require("../../assets/minus.png")}
-              />
-            </TouchableOpacity>
-            <View 
-              style={{
-                width: 45,
-                height: 45,
-                marginLeft: 15,
-                marginRight: 15,
-                borderWidth: 1,
-                borderRadius: 18,
-                borderColor: "rgba(226, 226, 226, 1)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <HeaderItem header="1" size={18} />
-            </View>
-            <TouchableOpacity>
-              <Image 
-                source={require("../../assets/add.png")}
-              />
-            </TouchableOpacity>
+        <View style={style.wrap_price_quantity}>
+          <View style={style.wrap_quantity}>
+            <ButtonAction type="minus" />
+            <Quantity quantity={1} />
+            <ButtonAction type="add" />
           </View>
           <HeaderItem header="$4.99" size={24} />
         </View>
-        <Accordion>
-          <Text
-            style={{
-              color: "#7C7C7C",
-              fontSize: 13,
-              lineHeight: 21
-            }}
-          >
-            Apples are nutritious. 
-            Apples may be good for weight loss.
-            apples may be good for your heart. 
-            As part of a healtful and varied diet.
+        <Accordion 
+          name="Product Detail"
+        >
+          <Text style={style.accordion_children_content}>
+            Apples are nutritious. Apples may be good for weight loss. apples
+            may be good for your heart. As part of a healtful and varied diet.
           </Text>
         </Accordion>
-        <Accordion>
-          <Text
-            style={{
-              color: "#7C7C7C",
-              fontSize: 13,
-              lineHeight: 21
-            }}
-          >
-            Apples are nutritious. 
-            Apples may be good for weight loss.
-            apples may be good for your heart. 
-            As part of a healtful and varied diet.
+        <Accordion 
+          name="Nutritions"
+          optionalHeader={<Nutritions gram="100" />}
+        >
+          {
+            Object.entries(PRODUCT.nutritions)
+              .map((item, index) => (
+                <View
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    alignItems: "center"
+                  }}
+                  key={index}
+                >
+                  <Text 
+                    style={[style.accordion_children_content, { textTransform: 'capitalize'}]}
+                  >
+                    {item[0]}
+                  </Text>
+                  <Text style={style.accordion_children_content}>
+                    {item[1]}
+                  </Text>
+                </View>
+            ))
+          }
+        </Accordion>
+        <Accordion name="Review" optionalHeader={<RatingStar />}>
+          <Text style={style.accordion_children_content}>
+            Apples are nutritious. Apples may be good for weight loss. apples
+            may be good for your heart. As part of a healtful and varied diet.
           </Text>
         </Accordion>
+        <ButtonSubmit header="Add To Basket" />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 export default DetailsProduct;

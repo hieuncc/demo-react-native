@@ -1,34 +1,17 @@
 import React, { useState, useRef } from "react";
-import { TouchableOpacity, View, Text, Image, Animated } from "react-native";
-const Accordion = ({children}) => {
+import { TouchableOpacity, View, Text, Animated } from "react-native";
+import { _timingAnimated } from "./function"
+const Accordion = ({children, name, optionalHeader}) => {
   const [ showContent, setShowContent ] = useState(false)
-  const [ height, setHeight ] = useState()
   const rotateValue = useRef(new Animated.Value(0)).current
   const opacityValue = useRef(new Animated.Value(0)).current
   const heightValue = useRef(new Animated.Value(0)).current
   function preformAnimation() {
-    console.log(showContent)
-    let toValue = 1
-    if ( showContent ) {
-      toValue = 0
-    }
+    let toValue = showContent ? 0 : 1
     Animated.parallel([
-      Animated.timing(rotateValue, {
-        toValue: toValue,
-        duration: 200,
-        useNativeDriver: true 
-      }),
-      Animated.timing(heightValue, {
-        toValue: 300,
-        duration: 200,
-        useNativeDriver: false 
-      }),
-      Animated.timing(opacityValue, {
-        toValue: toValue,
-        duration: 200,
-        delay: 200,
-        useNativeDriver: true 
-      }),
+      _timingAnimated(rotateValue, toValue, 300),
+      _timingAnimated(heightValue, toValue, 300, false),
+      _timingAnimated(opacityValue, toValue, 50, false),
     ]).start()
     setShowContent(!showContent)
   }
@@ -40,40 +23,58 @@ const Accordion = ({children}) => {
     inputRange: [0, 1],
     outputRange: [0, 1]
   })
-  function measureView(event) {
-    console.log(event.nativeEvent.layout.height)
-    setHeight(event.nativeEvent.layout.height)
-  }
+  const maxHeight = heightValue.interpolate({ 
+    inputRange: [0, 1], 
+    outputRange: [0, 400]
+  })
   return (
     <>
       <TouchableOpacity
         style={{
           width: "100%",
-          padding: 15,
+          padding: 10,
           paddingLeft: 5,
           paddingRight: 5,
           borderColor: "rgba(226, 226, 226, 0.7)",
           borderTopWidth: 1,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between"
         }}
         onPress={() => preformAnimation()}
       >
-        <Text
+        <View
           style={{
-            color: "#181725",
-            fontWeight: "600",
-            fontSize: 16,
+            minHeight: 40,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between"
           }}
         >
-          Product Detail
-        </Text>
-        <Animated.Image
-          style={{ transform: [{ rotateZ: rotateZ }]}}
-          source={require("../../assets/action/arrow_details.png")}
-        />
+          <Text
+            style={{
+              color: "#181725",
+              fontWeight: "600",
+              fontSize: 16,
+            }}
+          >
+            {name}
+          </Text>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center"
+            }}
+          >
+            {optionalHeader}
+            <Animated.Image
+              style={{ 
+                transform: [{ rotateZ: rotateZ }],
+                marginLeft: 20
+              }}
+              source={require("../../assets/action/arrow_details.png")}
+            />
+          </View>
+        </View>
       </TouchableOpacity>
       <Animated.View
         style={{
@@ -81,19 +82,10 @@ const Accordion = ({children}) => {
           paddingTop: 0,
           paddingBottom: 0,
           opacity: opacity,
-          // ...( showContent && { height: 100 }),
+          maxHeight: maxHeight,
         }}
-        // style={[height]}
       >
-        <View
-          style={{
-            paddingBottom: height !== 0 ? 15 : 0,
-            display: "none"
-          }}
-          onLayout={(event) => measureView(event)}
-        >
-          {children}
-        </View>
+        {children}
       </Animated.View>
     </>
   )
