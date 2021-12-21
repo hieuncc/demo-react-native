@@ -9,9 +9,18 @@ import ViewImage from './image';
 import Quantity from './quantity';
 import {style} from './style';
 import Star from '../../assets/star.svg';
-import firestore from '@react-native-firebase/firestore';
+import { db } from "../../../firebaseConfig"
 const DetailsProduct = () => {
-  // console.log(firestore().collection("fruits").doc())
+  useEffect(() => {
+    callAPI()
+  },[])
+  async function callAPI() {
+    const response = db.collection("fruits")
+    const data = await response.get()
+    data.docs.forEach((item) => 
+      console.log(item)
+    )
+  }
   const Nutritions = ({gram}) => {
     return (
       <View
