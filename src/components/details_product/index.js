@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {ScrollView, View, Text, Image, TouchableOpacity} from 'react-native';
 import HeaderItem from '../../pages/home/template/header_item';
 import SubtitleItem from '../../pages/home/template/subtitle_item';
@@ -9,7 +9,9 @@ import ViewImage from './image';
 import Quantity from './quantity';
 import {style} from './style';
 import Star from '../../assets/star.svg';
+import firestore from '@react-native-firebase/firestore';
 const DetailsProduct = () => {
+  // console.log(firestore().collection("fruits").doc())
   const Nutritions = ({gram}) => {
     return (
       <View

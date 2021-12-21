@@ -7,7 +7,7 @@ export const DATA = [
         header: "Organic Bananas",
         subtilte: "7pcs, Priceg",
         price: "$4.99",
-        image: require('../../assets/product/food.png')
+        image: require('../../assets/product/banana.png')
       },
       {
         id: 2,
@@ -40,7 +40,7 @@ export const DATA = [
         header: "Organic Bananas",
         subtilte: "7pcs, Priceg",
         price: "$4.99",
-        image: require('../../assets/product/food.png')
+        image: require('../../assets/product/banana.png')
       },
       {
         id: 2,

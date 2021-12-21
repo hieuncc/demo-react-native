@@ -1,6 +1,5 @@
-apply plugin: "com.android.application"
-
 import com.android.build.OutputFile
+apply plugin: "com.android.application"
 
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
@@ -190,6 +189,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
@@ -224,3 +225,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+// apply plugin: 'com.google.gms.google-services'
